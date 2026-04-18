@@ -1,3 +1,6 @@
+import { MYSELF } from "../../constants/general";
+import { SOCIAL_LINKS } from "../../constants/Socail";
+
 // components/Footer.tsx
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,19 +11,21 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Your Name. All rights reserved.
+              © {currentYear} {MYSELF?.name}. All rights reserved.
             </p>
           </div>
           <div className="flex space-x-6">
-            <a href="https://github.com" className="text-gray-400 hover:text-gray-900 transition-colors">
-              GitHub
-            </a>
-            <a href="https://linkedin.com" className="text-gray-400 hover:text-gray-900 transition-colors">
-              LinkedIn
-            </a>
-            <a href="https://twitter.com" className="text-gray-400 hover:text-gray-900 transition-colors">
-              Twitter
-            </a>
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-900 transition-colors"
+              >
+                {social.name}
+              </a>
+            ))}
           </div>
         </div>
       </div>

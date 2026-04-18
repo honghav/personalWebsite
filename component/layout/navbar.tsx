@@ -1,21 +1,16 @@
 // components/Navbar.tsx
 import Link from 'next/link';
+import { navLinks } from '../../constants/modoule';
+import { MYSELF } from '../../constants/general';
 
 const Navbar = () => {
-const navLinks = [
-  { name: 'Home', href: '#' },
-  { name: 'Projects', href: '#projects' }, // Points to id="projects"
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-];
-
   return (
     <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link href="/" className="text-2xl font-bold text-blue-600">
-              MY.PORTFOLIO
+              {MYSELF?.name}
             </Link>
           </div>
           <div className="hidden md:block">

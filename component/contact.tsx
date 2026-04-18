@@ -3,7 +3,7 @@ import { SOCIAL_LINKS } from "../constants/Socail";
 
 export default function SocialLinks() {
   return (
-    <section className="py-4">
+    <section id="contact" className="py-4">
       <div className="flex flex-wrap gap-4">
         {SOCIAL_LINKS.map((social) => (
           <a
