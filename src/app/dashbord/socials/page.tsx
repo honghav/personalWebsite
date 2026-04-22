@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SOCIAL_LINKS, SocialLink } from "../../../../constants/Socail";
 import { socialService } from "../../../../services/socaillink";
 import SocialForm from "../../../../component/SocialForm";
+import { getPublicImageUrl } from "../../../../constants/getImage";
 
 
 export default function SocialLinksPage() {
@@ -36,11 +37,11 @@ export default function SocialLinksPage() {
                     <div key={link.id} className="p-4 bg-white border rounded-xl flex items-center justify-between group">
                         <div className="flex items-center gap-4">
                             <div className={`p-2 rounded-lg transition-colors ${link.hover_bg}`}>
-                                <img src={link.image} alt={link.alt} className="w-6 h-6 object-contain" />
+                                <img src={getPublicImageUrl(String(link.image))} alt={link.alt} className="w-6 h-6 object-contain" />
                             </div>
                             <div>
                                 <div className="font-bold text-gray-800">{link.name}</div>
-                                <div className="text-xs text-gray-400 truncate max-w-[150px]">{link.href}</div>
+                                <div className="text-xs text-gray-400 truncate max-w-37.5">{link.href}</div>
                             </div>
                         </div>
 

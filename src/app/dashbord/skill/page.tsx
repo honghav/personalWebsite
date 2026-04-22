@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Skill, SKILLS } from "../../../../constants/skills";
 import { skillService } from "../../../../services/skills";
 import SkillForm from "../../../../component/SkillForm";
+import { getPublicImageUrl } from "../../../../constants/getImage";
 
 
 export default function SkillsPage() {
@@ -39,7 +40,7 @@ export default function SkillsPage() {
                             {skills.filter(s => s.category === cat).map(skill => (
                                 <div key={skill.id} className="p-4 bg-white border rounded-xl flex items-center justify-between shadow-sm">
                                     <div className="flex items-center gap-3">
-                                        {skill.image_url && <img src={skill.image_url} alt="" className="w-8 h-8 object-contain" />}
+                                        {skill.image_url && <img src={getPublicImageUrl(String(skill.image_url))} alt="" className="w-8 h-8 object-contain" />}
                                         <div>
                                             <div className="font-bold">{skill.name}</div>
                                             <div className="text-xs text-gray-500">{skill.level}</div>

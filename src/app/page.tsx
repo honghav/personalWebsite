@@ -1,6 +1,5 @@
 // app/page.tsx
-import Image from 'next/image';
-import Link from 'next/link';
+
 import TechSkills from '../../component/TechSkills';
 import AboutMe from '../../component/aboutMe';
 import SocialLinks from '../../component/contact';
@@ -9,8 +8,6 @@ import { MYSELF } from '../../constants/general';
 import { getPublicImageUrl } from '../../constants/getImage';
 
 export default async function Home() {
-  // const MYSELF = await getProfile();
-  // const [projects, setProjects] = useState<Projects[]>([]);
   if (!MYSELF) {
     return (
       <div className="flex min-h-screen items-center justify-center px-6">

@@ -1,3 +1,4 @@
+import { getPublicImageUrl } from "../constants/getImage";
 import { SKILLS } from "../constants/skills";
 
 export default function TechSkills() {
@@ -14,7 +15,7 @@ export default function TechSkills() {
           >
             <div className="flex items-center space-x-4">
               <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors">
-                <img src={skill.image_url} alt={skill.name} className="w-6 h-6 object-contain" />
+                <img src={getPublicImageUrl(String(skill.image_url))} alt={skill.name} className="w-6 h-6 object-contain" />
               </div>
               <div>
                 <h3 className="font-semibold text-slate-800 dark:text-slate-100">

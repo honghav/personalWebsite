@@ -11,7 +11,7 @@ export default function UploadForm() {
         setIsUploading(true);
         const result = await uploadImage(formData);
         setIsUploading(false);
-
+        console.log("Upload result:", result.url);
         if (result.success) {
             setImageUrl(result.url!);
             alert("Upload successful!");

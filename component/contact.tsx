@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { SOCIAL_LINKS, SocialLink } from "../constants/Socail";
 import { useEffect, useState } from "react";
+import { getPublicImageUrl } from "../constants/getImage";
 
 export default function SocialLinks() {
   const [links, setLinks] = useState<SocialLink[]>([]);
@@ -28,7 +29,7 @@ export default function SocialLinks() {
             {/* The Custom Icon Image */}
             <div className="relative w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
               <img
-                src={social.image}
+                src={getPublicImageUrl(String(social.image))}
                 alt={social.alt}
                 className="object-contain"
               />
