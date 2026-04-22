@@ -1,101 +1,102 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { profileService } from "../../../../services/profile";
 import { Myself } from "../../../../constants/general";
-import { getMyselfService, updateMyselfService } from "../../../../services/myselfService";
+import { getPublicImageUrl } from "../../../../constants/getImage";
 
-export default function MyselfPage() {
-    const [form, setForm] = useState<Myself>({
-        name: "",
-        profession: "",
-        image: "",
-        description: "",
-    });
+export default function ProfilePage() {
+    const [profile, setProfile] = useState<Myself | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-
-    // FETCH
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await getMyselfService();
-            if (data) setForm(data);
-        };
-
-        fetchData();
+        async function load() {
+            const data = await profileService.get();
+            if (data) setProfile(data);
+            setLoading(false);
+        }
+        load();
     }, []);
 
-    // INPUT CHANGE
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const handleUpdate = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!profile) return;
 
-    // UPDATE
-    const handleSubmit = async () => {
-        setLoading(true);
-        await updateMyselfService(form);
-        setLoading(false);
-        alert("Profile updated!");
+        setSaving(true);
+        const { error } = await profileService.update(profile);
+        setSaving(false);
+
+        if (error) alert("Error updating profile");
+        else alert("Profile updated successfully!");
     };
+    if (loading) return <div className="p-8">Loading Profile...</div>;
 
     return (
-        <div className="p-6 max-w-xl space-y-4">
-            <h1 className="text-xl font-bold">My Profile CRUD</h1>
+        <div className="max-w-3xl">
+            <header className="mb-8">
+                <h1 className="text-2xl font-bold">Profile Settings</h1>
+                <p className="text-gray-500">Manage your public identity and bio.</p>
+            </header>
+            <form onSubmit={handleUpdate} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-6 mb-8">
+                    <div className="relative group">
+                        <img
+                            src={getPublicImageUrl(String(profile?.image)) || "/placeholder.png"}
+                            alt="Profile"
+                            className="w-24 h-24 rounded-full object-cover border-4 border-indigo-50"
+                        />
+                    </div>
+                    <div className="flex-1">
+                        <label className="block text-xs font-bold text-gray-400 uppercase">Image Path</label>
+                        <input
+                            className="w-full mt-1 p-2 bg-gray-50 border rounded-lg text-sm"
+                            value={profile?.image || ""}
+                            onChange={e => setProfile({ ...profile!, image: e.target.value })}
+                            placeholder="/me.png"
+                        />
+                    </div>
+                </div>
 
-            {/* NAME */}
-            <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Name"
-                className="border p-2 w-full"
-            />
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-xs font-bold text-gray-400 uppercase">Full Name</label>
+                        <input
+                            className="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                            value={profile?.name || ""}
+                            onChange={e => setProfile({ ...profile!, name: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold text-gray-400 uppercase">Profession</label>
+                        <input
+                            className="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                            value={profile?.profession || ""}
+                            onChange={e => setProfile({ ...profile!, profession: e.target.value })}
+                        />
+                    </div>
+                </div>
 
-            {/* PROFESSION */}
-            <input
-                name="profession"
-                value={form.profession}
-                onChange={handleChange}
-                placeholder="Profession"
-                className="border p-2 w-full"
-            />
+                <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase">Description / Bio</label>
+                    <textarea
+                        rows={6}
+                        className="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                        value={profile?.description || ""}
+                        onChange={e => setProfile({ ...profile!, description: e.target.value })}
+                    />
+                </div>
 
-            {/* IMAGE */}
-            <input
-                name="image"
-                value={form.image}
-                onChange={handleChange}
-                placeholder="/image/profile.jpg"
-                className="border p-2 w-full"
-            />
-
-            {/* DESCRIPTION */}
-            <textarea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                placeholder="Description"
-                className="border p-2 w-full h-32"
-            />
-
-            {/* SAVE BUTTON */}
-            <button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="bg-blue-600 text-white px-4 py-2"
-            >
-                {loading ? "Saving..." : "Save"}
-            </button>
-
-            {/* PREVIEW */}
-            <div className="mt-6 border p-4">
-                <h2 className="font-bold">Preview</h2>
-                <p>{form.name}</p>
-                <p>{form.profession}</p>
-                <p>{form.description}</p>
-                <img src={form.image} className="w-32 mt-2" />
-            </div>
+                <div className="flex justify-end">
+                    <button
+                        type="submit"
+                        disabled={saving}
+                        className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition disabled:bg-gray-400"
+                    >
+                        {saving ? "Saving..." : "Save Profile"}
+                    </button>
+                </div>
+            </form>
         </div>
     );
 }

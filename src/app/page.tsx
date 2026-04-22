@@ -4,12 +4,13 @@ import Link from 'next/link';
 import TechSkills from '../../component/TechSkills';
 import AboutMe from '../../component/aboutMe';
 import SocialLinks from '../../component/contact';
-import { PROJECTS } from '../../constants/feature';
+import { ProjectList } from '../../constants/feature';
 import { MYSELF } from '../../constants/general';
+import { getPublicImageUrl } from '../../constants/getImage';
 
 export default async function Home() {
   // const MYSELF = await getProfile();
-
+  // const [projects, setProjects] = useState<Projects[]>([]);
   if (!MYSELF) {
     return (
       <div className="flex min-h-screen items-center justify-center px-6">
@@ -17,16 +18,17 @@ export default async function Home() {
       </div>
     );
   }
+  const filename = getPublicImageUrl(String(MYSELF.image)); // Assuming MYSELF.image is the filename stored in R2
 
   return (
     <div className="flex flex-col gap-20">
       {/* HERO SECTION */}
-      <section id="home" className="relative isolate px-6 pt-14 lg:px-8 min-h-screen flex items-center">
-        <div className="mx-auto max-w-2xl text-center">
+      <section id="home" className="my-20 relative isolate px-6 pt-14 lg:px-8 min-h-screen flex items-center">
+        <div className="mx-auto max-w-6xl text-center">
           <div className="mb-8 flex justify-center">
             <div className="relative h-32 w-32 sm:h-48 sm:w-48 overflow-hidden rounded-full border-4 border-white shadow-xl">
               {/* <p>{MYSELF.image}</p> */}
-              <Image src={MYSELF.image} alt={MYSELF.profession} fill className="object-contain" priority />
+              <img src={filename} alt={MYSELF.profession} className="object-contain" />
             </div>
           </div>
 
@@ -34,7 +36,7 @@ export default async function Home() {
             Hi, I'm <span className="text-blue-600">{MYSELF.name}</span> <br />
             <span className="text-gray-500 text-3xl lg:text-4xl">{MYSELF.profession}</span>
           </h1>
-          <p className="mt-6 text-lg text-gray-600">{MYSELF.description}</p>
+          <p className="mt-6 text-lg text-gray-600 text-justify">{MYSELF.description}</p>
           <div className="mt-10 flex justify-center gap-x-6">
             <a href="#projects" className="rounded-full bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-500 transition-all">
               See My Work
@@ -56,7 +58,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project, index) => (
+            {ProjectList.map((project, index) => (
               <div key={index} className="group relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
                 <p className="text-gray-600 mb-4 text-sm">{project.description}</p>
