@@ -5,7 +5,7 @@ export default function TechSkills() {
   return (
     <section id="technical" className="py-4 px-6 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white">
-        Technical Arsenal
+        Technical Skills & Tools
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {SKILLS.map((skill) => (

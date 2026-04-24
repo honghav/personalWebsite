@@ -19,10 +19,10 @@ export default function AdminDashboard() {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Navigation Header */}
-            <header className="mt-30 bg-white border-b sticky top-0 z-10">
+            <header className=" bg-white border-b sticky top-0 z-10">
                 <div className="max-w-6xl mx-auto px-8">
                     <div className="flex items-center justify-between h-16">
-                        <h1 className="text-xl font-bold text-indigo-600">Portfolio CMS</h1>
+                        <h1 className="text-xl font-bold text-indigo-600"><a href="/">Portfolio CMS</a></h1>
                         <nav className="flex space-x-4">
                             {tabs.map((tab) => (
                                 <button

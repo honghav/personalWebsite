@@ -3,6 +3,7 @@
 import TechSkills from '../../component/TechSkills';
 import AboutMe from '../../component/aboutMe';
 import SocialLinks from '../../component/contact';
+import Navbar from '../../component/layout/navbar';
 import { ProjectList } from '../../constants/feature';
 import { MYSELF } from '../../constants/general';
 import { getPublicImageUrl } from '../../constants/getImage';
@@ -19,9 +20,11 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-20">
+      <Navbar />
+
       {/* HERO SECTION */}
       <section id="home" className="my-20 relative isolate px-6 pt-14 lg:px-8 min-h-screen flex items-center">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-7xl text-center">
           <div className="mb-8 flex justify-center">
             <div className="relative h-32 w-32 sm:h-48 sm:w-48 overflow-hidden rounded-full border-4 border-white shadow-xl">
               {/* <p>{MYSELF.image}</p> */}
@@ -46,7 +49,7 @@ export default async function Home() {
       <AboutMe />
       {/* PROJECTS SECTION */}
       <section id="projects" className="py-4  bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-start mb-16 mx-auto">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl underline decoration-blue-600 underline-offset-8">
               Featured Projects

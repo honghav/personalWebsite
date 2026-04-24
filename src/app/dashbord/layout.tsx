@@ -1,7 +1,7 @@
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-white">
+        <section className="bg-white">
             {children}
-        </div>
+        </section>
     );
 }

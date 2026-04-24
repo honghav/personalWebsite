@@ -5,7 +5,7 @@ import { ABOUTME, FASTFACTS } from "../constants/aboutMe";
 
 export default async function AboutAndWork() {
   return (
-    <section id="about" className="py-4 px-6 max-w-6xl mx-auto space-y-24">
+    <section id="about" className="py-4 px-6 max-w-7xl mx-auto space-y-24">
       {/* --- PART 1: STORY (Previous Section) --- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div className="space-y-6">
@@ -46,7 +46,7 @@ export default async function AboutAndWork() {
           {EXPERIENCES.map((exp, index) => (
             <div key={index} className="relative pl-8">
               {/* Timeline Dot */}
-              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-slate-950" />
+              <div className="absolute -left-2.25 top-1 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-slate-950" />
 
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                 <div>
@@ -57,7 +57,7 @@ export default async function AboutAndWork() {
                 </div>
                 <div className="flex items-center mt-1 md:mt-0 text-slate-500 text-sm bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full w-fit">
                   <Calendar size={14} className="mr-2" />
-                  {exp.period_start} — {exp.period_end}
+                  {exp.period_start} — {exp.period_end || "Present"}
                 </div>
               </div>
 

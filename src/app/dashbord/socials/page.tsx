@@ -24,7 +24,7 @@ export default function SocialLinksPage() {
     };
 
     return (
-        <div className="mt-30 p-8 max-w-4xl mx-auto">
+        <div className=" p-8 max-w-4xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-2xl font-bold">Social Links</h1>
                 <button onClick={() => setEditing(true)} className="bg-black text-white px-4 py-2 rounded-lg text-sm">

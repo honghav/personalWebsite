@@ -42,7 +42,7 @@ export default function ExperienceCRUD() {
     };
 
     return (
-        <div className=" mt-30 p-8 bg-gray-50 min-h-screen">
+        <div className=" p-8 bg-gray-50 min-h-screen">
             <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800">Experience Manager</h1>
