@@ -45,8 +45,8 @@ export default async function Home() {
 
       <AboutMe />
       {/* PROJECTS SECTION */}
-      <section id="projects" className="py-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section id="projects" className="py-4  bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-start mb-16 mx-auto">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl underline decoration-blue-600 underline-offset-8">
               Featured Projects

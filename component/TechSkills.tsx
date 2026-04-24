@@ -3,7 +3,7 @@ import { SKILLS } from "../constants/skills";
 
 export default function TechSkills() {
   return (
-    <section id="technical" className="py-4 px-6 max-w-5xl mx-auto">
+    <section id="technical" className="py-4 px-6 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white">
         Technical Arsenal
       </h2>
